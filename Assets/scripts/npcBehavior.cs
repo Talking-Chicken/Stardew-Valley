@@ -44,6 +44,8 @@ public class npcBehavior : MonoBehaviour
         portrait.enabled = false;
         nametag.enabled = false;
 
+        buttonIMG.enabled = false;
+
         TXTsfx = GetComponent<AudioSource>(); // assigns the sound!
         
     }
@@ -82,6 +84,7 @@ public class npcBehavior : MonoBehaviour
         }
 
         TXTsfx.Stop(); // stop playing the typing SFX !!
+        buttonIMG.enabled = true; // enable the button to progress !
     }
 
 // to handle dialogue VISUALS
@@ -124,6 +127,9 @@ public class npcBehavior : MonoBehaviour
 
 // FOR THE BUTTON SYSTEM ...     
     public void NXT(){ // when the player presses next , 
+    
+        buttonIMG.enabled = false; // enable the button to progress !
+
     // make sure the CONVERSATION tracker is the same as the dialogue lines ,
         CONVERSATION = currentLine + 1;
         
