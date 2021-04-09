@@ -41,29 +41,28 @@ public class npcBehavior : MonoBehaviour
         portrait.enabled = false;
         nametag.enabled = false;
 
-        button.enabled = false;
-        buttonIMG.enabled = false;
-
         TXTsfx = GetComponent<AudioSource>(); // assigns the sound!
-
-        StartCoroutine(Type(dialogueLines[currentLine])); // the typing starts once triggered!
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         dialogue();
         if(txt.text == dialogueLines[currentLine]){ // if the text completes typing the dialogue ,
             // enable the button to progress!
             button.enabled =  true;
             buttonIMG.enabled = true;
         }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.name == "player"){ // IF the player is IN RANGE of the box collider ,
+            Debug.Log("mrow");
             NPCtalk = true; // player is at a good distance to trigger dialogue !
+            StartCoroutine(Type(dialogueLines[currentLine]));
         }
     }
 
@@ -77,7 +76,6 @@ public class npcBehavior : MonoBehaviour
             yield return new WaitForSeconds(waitSPEED);
         }
         TXTsfx.Stop(); // stop playing the typing SFX !!
-        buttonIMG.enabled = true; // enable the button to progress !
     }
 
 // to handle dialogue VISUALS
@@ -92,6 +90,7 @@ public class npcBehavior : MonoBehaviour
 
             portrait.enabled = true;
             nametag.enabled = true;
+            
 
             if (CONVERSATION == 3){ // END of dialogue ...
                 Debug.Log("hatsune miku");
@@ -116,11 +115,6 @@ public class npcBehavior : MonoBehaviour
 
 // FOR THE BUTTON SYSTEM ...     
     public void NXT(){ // when the player presses next , 
-    
-    // disable the button!
-        button.enabled = false;
-        buttonIMG.enabled = false;
-    
     // make sure the CONVERSATION tracker is the same as the dialogue lines ,
         CONVERSATION = currentLine + 1;
         
@@ -130,5 +124,4 @@ public class npcBehavior : MonoBehaviour
             StartCoroutine(Type(dialogueLines[currentLine]));
             }
     }
-
 }

@@ -9,10 +9,10 @@ public class npcTrigger : MonoBehaviour
 
     bool talkYES; // to CONFIRM that the player can talk
 
-    public GameObject NPCactivate; // to hold the conversation object (the actual dialogue and stuff!)
+    public GameObject NPCactivate; // to hold the conversation object
 
     // DIALOGUE VISUALS
-        // good to copy + paste to other NPC triggers 
+        // good to copy + paste to other NPC triggers
 
     // SETUP
         public Image txtbox; // the textbox
@@ -36,9 +36,6 @@ public class npcTrigger : MonoBehaviour
         portrait.enabled = false;
         nametag.enabled = false;
 
-        button.enabled = false;
-        buttonIMG.enabled = false;
-        
         NPCactivate.SetActive(false);
     }
 
