@@ -7,6 +7,9 @@ public class npcBehavior : MonoBehaviour
 {
     // to easily ACTIVATE or DEACTIVATE the conversation
     bool NPCtalk = false;
+
+    // to ENABLE or DISABLE the object easily !
+    public GameObject self;
     
     // DIALOGUE SYSTEM
         // good to copy + paste to other NPC's with dialogue
@@ -48,26 +51,28 @@ public class npcBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         dialogue();
         if(txt.text == dialogueLines[currentLine]){ // if the text completes typing the dialogue ,
             // enable the button to progress!
             button.enabled =  true;
             buttonIMG.enabled = true;
         }
-        
     }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.name == "player"){ // IF the player is IN RANGE of the box collider ,
             Debug.Log("mrow");
             NPCtalk = true; // player is at a good distance to trigger dialogue !
+
+            // since the player is at the right talking range ,
+                // start typing !
             StartCoroutine(Type(dialogueLines[currentLine]));
         }
     }
 
 // THE TYPING SYSTEM ...!
     public IEnumerator Type(string dialogueLines){
+
         TXTsfx.Play(); // plays the typing SFX ,
         txt.text = ""; // makes sure the text is presenting the right text
         
@@ -75,6 +80,7 @@ public class npcBehavior : MonoBehaviour
             txt.text += letter;
             yield return new WaitForSeconds(waitSPEED);
         }
+
         TXTsfx.Stop(); // stop playing the typing SFX !!
     }
 
@@ -92,8 +98,8 @@ public class npcBehavior : MonoBehaviour
             nametag.enabled = true;
             
 
-            if (CONVERSATION == 3){ // END of dialogue ...
-                Debug.Log("hatsune miku");
+            if (CONVERSATION == 3){ // IF the player reaches the END of the dialogue ...
+                Debug.Log("hatsune miku"); // lmk !
 
             // DISABLE everything !
                 NPCtalk = false;
@@ -109,6 +115,9 @@ public class npcBehavior : MonoBehaviour
             // RESET the conversation
                 currentLine = 0;
                 CONVERSATION = 0;
+            
+            // DISABLE the event until the player manually triggers it again !
+                self.SetActive(false); 
             }
         }
     }
