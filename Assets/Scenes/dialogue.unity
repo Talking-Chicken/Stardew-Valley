@@ -1187,8 +1187,8 @@ MonoBehaviour:
   CONVERSATION: 0
   dialogueLines:
   - hello hi hi!
-  - this is a test!
-  - it works!!! (crying)
+  - this a test!! (crying)
+  - welcome to stardew valley !!!
   - 
   currentLine: 0
   waitSPEED: 0.03

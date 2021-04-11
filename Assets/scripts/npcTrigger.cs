@@ -36,6 +36,8 @@ public class npcTrigger : MonoBehaviour
         portrait.enabled = false;
         nametag.enabled = false;
 
+        buttonIMG.enabled = false;
+
         NPCactivate.SetActive(false);
     }
 
